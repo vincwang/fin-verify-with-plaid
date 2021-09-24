@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400');
+ * {
+     box-sizing: border-box;
+}
+ *::before, *::after {
+     box-sizing: border-box;
+}
+
+ body {
+     font-family: 'Roboto', sans-serif;
+     font-size: 1rem;
+     line-height: 1.5;
+     align-items: center;
+     justify-content: center;
+     margin: 0;
+     min-height: 100vh;
+     background: #e6a53e;
+     width:100%;
+}
+ button {
+     position: relative;
+     display: inline-block;
+     cursor: pointer;
+     outline: none;
+     border: 0;
+     vertical-align: middle;
+     text-decoration: none;
+     background: transparent;
+     padding: 0;
+     font-size: inherit;
+     font-family: inherit;
+}
+ button.learn-more {
+     width: 12rem;
+     height: auto;
+     left: 50%;
+     transform: translate(-50%, -50%);
+}
+ button.learn-more .circle {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     position: relative;
+     display: block;
+     margin: 0;
+     width: 3rem;
+     height: 3rem;
+     background: #282936;
+     border-radius: 1.625rem;
+}
+ button.learn-more .circle .icon {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     margin: auto;
+     background: #fff;
+}
+ button.learn-more .circle .icon.arrow {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     left: 0.625rem;
+     width: 1.125rem;
+     height: 0.125rem;
+     background: none;
+}
+ button.learn-more .circle .icon.arrow::before {
+     position: absolute;
+     content: '';
+     top: -0.25rem;
+     right: 0.0625rem;
+     width: 0.625rem;
+     height: 0.625rem;
+     border-top: 0.125rem solid #fff;
+     border-right: 0.125rem solid #fff;
+     transform: rotate(45deg);
+}
+ button.learn-more .button-text {
+     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     padding: 0.75rem 0;
+     margin: 0 0 0 1.85rem;
+     color: #282936;
+     font-weight: 700;
+     line-height: 1.6;
+     text-align: center;
+     text-transform: uppercase;
+}
+ button:hover .circle {
+     width: 100%;
+}
+ button:hover .circle .icon.arrow {
+     background: #fff;
+     transform: translate(1rem, 0);
+}
+ button:hover .button-text {
+     color: #fff;
+}
+@supports (display: table) {
+     body {
+         display: table;
+         grid-template-columns: repeat(4, 1fr);
+         grid-gap: 0.625rem;
+         grid-template-areas: ". main main ." ". main main .";
+    }
+     #container {
+         grid-area: main;
+         align-self: center;
+         justify-self: center;
+    }
+}
+ 
+.centered {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+ div.effect-one {
+	 font-family: 'Roboto', sans-serif;
+	 color: #fefae0;
+	 font-size: 20px;
+	 padding: 0;
+}
+ a {
+	 cursor: pointer;
+	 text-decoration: none;
+	 color: inherit;
+}
+ ol, li {
+	 margin: 0;
+	 padding: 0;
+}
+ li {
+	 padding: 12px;
+}
+ .wrapper {
+	 width: 100%;
+	 max-width: 400px;
+	 margin: 0 auto 0 auto;
+}
+ 
+.effect-one > a {
+	position: relative;
+}
+.effect-one > a:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	bottom: 0;
+	margin: -5px 0;
+	background-color: #fefae0;
+	visibility: hidden;
+	transform: scaleX(0);
+	transition: all 0.4s ease-in-out 0s;
+}
+.effect-one > a:hover:before {
+	visibility: visible;
+	transform: scaleX(1);
+}
+  
+.receipt-content {
+    display: table;
+    margin: 0 auto;
+    left: 50%;
+}
+
+  .receipt-content .invoice-wrapper {
+    background: #FFF;
+    border: 1px solid #CDD3E2;
+    box-shadow: 0px 0px 1px #CCC;
+    padding: 40px 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    width: 100%;
+    left: 50%;
+  }
+
+  
+  .receipt-content .invoice-wrapper .payment-details span {
+    color: #A9B0BB;
+    display: block; 
+  }
+  .receipt-content .invoice-wrapper .payment-details a {
+    display: inline-block;
+    margin-top: 5px; 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .print a {
+    display: inline-block;
+    border: 1px solid #9CB5D6;
+    padding: 13px 13px;
+    border-radius: 5px;
+    color: #708DC0;
+    font-size: 13px;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear; 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .print a:hover {
+    text-decoration: none;
+    border-color: #333;
+    color: #333; 
+  }
+  
+  @media (min-width: 1200px) {
+    .receipt-content .container {width: 800px; } 
+  }
+  
+  .receipt-content .logo {
+    text-align: center;
+    margin-top: 50px; 
+  }
+  
+  .receipt-content .logo a {
+    font-family: Myriad Pro, Lato, Helvetica Neue, Arial;
+    font-size: 36px;
+    letter-spacing: .1px;
+    color: #555;
+    font-weight: 300;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear; 
+  }
+  
+  .receipt-content .invoice-wrapper .intro {
+    line-height: 25px;
+    color: #444; 
+    text-align: center;
+  }
+  
+  .receipt-content .invoice-wrapper .payment-info {
+    margin-top: 25px;
+    padding-top: 15px; 
+  }
+  
+  .receipt-content .invoice-wrapper .payment-info span {
+    color: #A9B0BB; 
+  }
+  
+  .receipt-content .invoice-wrapper .payment-info strong {
+    display: block;
+    color: #444;
+    margin-top: 3px; 
+  }
+  
+  @media (max-width: 767px) {
+    .receipt-content .invoice-wrapper .payment-info .text-right {
+    text-align: left;
+    margin-top: 20px; } 
+  }
+  .receipt-content .invoice-wrapper .payment-details {
+    border-top: 2px solid #EBECEE;
+    margin-top: 30px;
+    padding-top: 20px;
+    line-height: 22px; 
+  }
+  
+  
+  @media (max-width: 767px) {
+    .receipt-content .invoice-wrapper .payment-details .text-right {
+    text-align: left;
+    margin-top: 20px; } 
+  }
+  .receipt-content .invoice-wrapper .line-items {
+    margin-top: 40px; 
+  }
+  .receipt-content .invoice-wrapper .line-items .headers {
+    color: #A9B0BB;
+    font-size: 13px;
+    letter-spacing: .3px;
+    border-bottom: 2px solid #EBECEE;
+    padding-bottom: 4px; 
+  }
+  .receipt-content .invoice-wrapper .line-items .items {
+    margin-top: 8px;
+    border-bottom: 2px solid #EBECEE;
+    padding-bottom: 8px; 
+  }
+  .receipt-content .invoice-wrapper .line-items .items .item {
+    padding: 10px 0;
+    color: #696969;
+    font-size: 15px; 
+  }
+  @media (max-width: 767px) {
+    .receipt-content .invoice-wrapper .line-items .items .item {
+    font-size: 13px; } 
+  }
+  .receipt-content .invoice-wrapper .line-items .items .item .amount {
+    letter-spacing: 0.1px;
+    color: #84868A;
+    font-size: 16px;
+   }
+  @media (max-width: 767px) {
+    .receipt-content .invoice-wrapper .line-items .items .item .amount {
+    font-size: 13px; } 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .total {
+    margin-top: 30px; 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .total .extra-notes {
+    float: left;
+    width: 40%;
+    text-align: left;
+    font-size: 13px;
+    color: #7A7A7A;
+    line-height: 20px; 
+  }
+  
+  @media (max-width: 767px) {
+    .receipt-content .invoice-wrapper .line-items .total .extra-notes {
+    width: 100%;
+    margin-bottom: 30px;
+    float: none; } 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .total .extra-notes strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #454545; 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .total .field {
+    margin-bottom: 7px;
+    font-size: 14px;
+    color: #555; 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .total .field.grand-total {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 500; 
+  }
+  
+  
+  .receipt-content .invoice-wrapper .line-items .total .field span {
+    display: inline-block;
+    margin-left: 20px;
+    min-width: 85px;
+    color: #84868A;
+    font-size: 15px; 
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .print {
+    margin-top: 50px;
+    text-align: center; 
+    margin-bottom: 50px;
+  }
+  
+  .receipt-content .invoice-wrapper .line-items .print a i {
+    margin-right: 3px;
+    font-size: 14px; 
+  }
+  
+  .receipt-content .footer {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 12px;
+    color: #969CAD; 
+  }                    
+
+
+  .stamp {
+    transform: rotate(12deg);
+      color: #555;
+      font-size: 3rem;
+      font-weight: 700;
+      border: 0.25rem solid #555;
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      text-transform: uppercase;
+      border-radius: 1rem;
+      font-family: 'Courier';
+      -webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+      -webkit-mask-size: 944px 604px;
+     mix-blend-mode: multiply;
+  }
+
+  .is-approved {
+	color: #0A9928;
+	border: 0.5rem solid #0A9928;
+	-webkit-mask-position: 13rem 6rem;
+	transform: rotate(-14deg);
+    border-radius: 0;
+ } 

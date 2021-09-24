@@ -1,0 +1,28 @@
+{
+  "name": "fin-verify",
+  "version": "1.0.0",
+  "description": "Financial Verification with Plaid",
+  "main": "index.js",
+  "engines": {
+    "node": "^12.20.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vincent Wang",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.993.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "expres": "0.0.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "plaid": "^8.2.0",
+    "short-uuid": "^4.2.0",
+    "uuid": "^8.3.2"
+  }
+}

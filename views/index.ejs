@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fin Verify</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body class="background">
+  <% if (verified == true) { %>                           
+<div class="receipt-content">
+  <div class="container">
+  <div class="row">
+      <div class="invoice-wrapper middle">
+        <div class="intro">
+          <h1>Financial Verification</h1>
+        </div>
+
+        <div class="payment-info">
+          <div class="row">
+            <div class="col-sm-6">
+              <span>Name</span>
+              <strong><%- verifyResult.Item.verfication.accounts[0].owners[0].names[0] %></strong>
+            </div>
+            <div class="col-sm-6 text-right">
+              <span>Address</span>
+              <strong>
+                <%- verifyResult.Item.verfication.accounts[0].owners[0].addresses[0].data.street %> <br>
+                <%- verifyResult.Item.verfication.accounts[0].owners[0].addresses[0].data.city %>  <br>
+                <%- verifyResult.Item.verfication.accounts[0].owners[0].addresses[0].data.region %>,
+                <%- verifyResult.Item.verfication.accounts[0].owners[0].addresses[0].data.postal_code %>  <br>
+                <%- verifyResult.Item.verfication.accounts[0].owners[0].addresses[0].data.country %>  <br>
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro">
+          <h3>Bank Accounts</h3>
+        </div>
+
+        <% for (var i = 0; i < verifyResult.Item.verfication.accounts.length; i++) {  %>
+          <div class="payment-details">
+            <div class="row">
+              <div class="col-sm-6">
+                <span>Account Name</span>
+
+                <% if (verifyResult.Item.verfication.accounts[i].official_name != null) {%>
+                  <strong>
+                    <%-verifyResult.Item.verfication.accounts[i].official_name%>
+                  </strong>                
+                  <%} else {%>
+                    <strong>
+                      <%-verifyResult.Item.verfication.accounts[i].name%>
+                    </strong>  
+                    <%}%>
+
+
+                <span>Balance</span>
+                 Currency: <%-verifyResult.Item.verfication.accounts[i].balances.iso_currency_code%> 
+                 <% if (verifyResult.Item.verfication.accounts[i].balances.available != null) {%>
+                  <br>
+                  Available: 
+                  <strong>
+                    <%-verifyResult.Item.verfication.accounts[i].balances.available%>
+                  </strong>                  
+                  <%}%>
+
+                  <% if (verifyResult.Item.verfication.accounts[i].balances.current != null) {%>
+                    <br>
+                    Current: 
+                    <strong>
+                      <%-verifyResult.Item.verfication.accounts[i].balances.current%>
+                    </strong>                  
+                    <%}%>
+              </div>
+            </div>
+          </div>
+        <%}%>
+
+        <div class="line-items">
+          <div class="headers clearfix"></div>
+          <div class="total text-right">
+            <p class="extra-notes">
+              <strong>Verification Date</strong>
+              <%- new Date(verifyResult.Item.timestamp) %>
+            </p>
+          </div>
+        </div>
+
+      <div class="footer">
+        <span class="stamp is-approved">Verified</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>                    
+
+  <%} else {%>
+    <div id="container" class="centered">
+      <div >
+        <h1>Financial Verification with Plaid (sandbox)</h1><br>
+      </div>
+        <button class="learn-more" id="plaid-button">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Go Verify</span>
+        </button>
+    </div>
+  <%}%>
+</body>
+<script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+<script>
+(async ($) => {
+    const fetchLinkToken = async () => {
+        const response = await fetch('/create-link-token');
+        const { linkToken } = await response.json();
+        return linkToken;
+    };
+
+    const handler = Plaid.create({
+        token: await fetchLinkToken(),
+        onSuccess: async (publicToken, metadata) => {
+            console.log(publicToken);
+            console.log(metadata);
+            $.ajax({
+                method: "POST",
+                url: "/token-exchange",
+                data: JSON.stringify({ publicToken }),
+                contentType: "application/json"
+            }).done(function(response) {
+                window.location.replace('/verified?id=' + response.verifyId);
+            });
+        },
+        onEvent: (metadata) => {
+            console.log(metadata);
+        },
+        onExit: (error, metadata) => {
+            console.log(error, metadata);
+        },
+    });
+    $('#plaid-button').on('click', function(e) { handler.open(); });
+})(jQuery);
+</script>
+</html>
